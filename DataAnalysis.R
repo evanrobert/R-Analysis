@@ -43,5 +43,12 @@ for(i in 1:nrow(df)){
 
 select(filter(df, gender == 'Androgyne'),firstName)
 
+# Most Common Job Title
+Most_Common_Job_Title <- sort(table(df$jobTitle), decreasing = TRUE)[1]
+print(Most_Common_Job_Title)
+
+
+# Distinct Company Names
+n_distinct(df$name)
 
 
