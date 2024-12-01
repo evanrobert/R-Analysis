@@ -1,5 +1,6 @@
 library(dplyr)
 
+
 df <- read.csv("/Users/evanlindsay/Downloads/faker.csv")
 
 # 1
@@ -50,5 +51,31 @@ print(Most_Common_Job_Title)
 
 # Distinct Company Names
 n_distinct(df$name)
+
+# For Macthes that contain, not exact
+
+count <- 0
+for(i in 1: nrow(df)){
+  if(grepl("Regional Metrics",df$jobTitle[i])){
+    count <- count + 1
+  }
+}
+print(count)
+
+# Exact Match
+count <- 0
+for(i in 1: nrow(df)){
+  if(df$jobTitle[i] == "Central Accounts Liaison"){
+  count <- count + 1
+  }
+}
+cat("Count:", count,"Name:" , df$name[i], "Descriptor:" ,df$jobDescriptor[i])
+
+
+
+
+
+
+
 
 
