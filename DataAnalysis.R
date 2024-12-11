@@ -1,5 +1,8 @@
 library(dplyr)
-
+library(ggplot2)
+library(sf)
+library(dplyr)
+library(tmap)
 
 df <- read.csv("/Users/evanlindsay/Downloads/faker.csv")
 
@@ -70,6 +73,26 @@ for(i in 1: nrow(df)){
   }
 }
 cat("Count:", count,"Name:" , df$name[i], "Descriptor:" ,df$jobDescriptor[i])
+
+
+top_descriptors <- df %>%
+  count(jobDescriptor, sort = TRUE) %>%
+  slice_max(n, n = 5)  # Get the top 5
+
+
+
+ggplot(top_descriptors, aes(x = reorder(jobDescriptor, -n), y = n, fill = jobDescriptor)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  theme(
+    panel.background = element_rect(fill = "lightgrey", color = "black"),
+    plot.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 12, color = "Red"),
+    axis.title = element_text(size = 14, face = "italic")
+  ) +
+  labs(title = "Top 5 Most Popular Job Descriptors", x = "Job Descriptor", y = "Count")
+
+
+
 
 
 
