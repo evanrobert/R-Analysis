@@ -91,6 +91,32 @@ ggplot(top_descriptors, aes(x = reorder(jobDescriptor, -n), y = n, fill = jobDes
   ) +
   labs(title = "Top 5 Most Popular Job Descriptors", x = "Job Descriptor", y = "Count")
 
+top_Gender <- df %>%
+  count(gender, sort = TRUE) %>%
+  slice_max(n,n= 3)
+
+ggplot(top_Gender, aes(x = reorder(gender, -n), y = n, fill = gender)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  theme_minimal() +
+  labs(
+    title = "Top 3 Most Common Genders",
+    x = "Genders",
+    y = "Count"
+  )
+
+ggplot(top_Gender, aes(x = "", y = n, fill = gender)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  theme_minimal() +
+  labs(
+    title = "Top 3 Most Common Genders",
+    x = "",
+    y = "Count"
+  ) +
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+
+
+
 
 
 
