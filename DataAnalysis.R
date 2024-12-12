@@ -123,10 +123,18 @@ df$Contains_p <- grepl('p', df$firstName, fixed = TRUE)
 df$HasJobTitle <- grepl('Regional|Human', df$jobTitle, fixed = FALSE)
 
 
+user_info <- df[df$jobTitle == 'Regional Metrics Producer',]
+  print(user_info)
+
+
+
 for(i in 1:nrow(df)){
   if(df$jobTitle[i] == 'Regional Metrics Producer'){
     print(df$jobTitle[i])
     print(df$firstName[i])
+    print(df$lastName[i])
+  
+    
 
   }
 }
