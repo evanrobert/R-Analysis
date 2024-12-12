@@ -118,6 +118,19 @@ ggplot(top_Gender, aes(x = "", y = n, fill = gender)) +
 
 
 
+df$Contains_p <- grepl('p', df$firstName, fixed = TRUE)
+
+df$HasJobTitle <- grepl('Regional|Human', df$jobTitle, fixed = FALSE)
+
+
+for(i in 1:nrow(df)){
+  if(df$jobTitle[i] == 'Regional Metrics Producer'){
+    print(df$jobTitle[i])
+    print(df$firstName[i])
+
+  }
+}
+
 
 
 
